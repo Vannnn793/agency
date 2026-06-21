@@ -7,6 +7,10 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Sistem Penyaluran Tenaga Kerja (Recruitment and Placement Agency System)
+
+Sistem penyaluran tenaga kerja dengan role Admin (pengelola kandidat, perusahaan, lowongan, dan penempatan kerja) serta role Perusahaan (memposting lowongan dan melihat pelamar potensial).
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
