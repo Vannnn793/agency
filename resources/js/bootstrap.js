@@ -1,0 +1,1 @@
+// Laravel Bootstrap JS placeholder
