@@ -29,15 +29,27 @@ fi
 echo "⚙️  Caching configuration..."
 php artisan config:cache
 php artisan route:cache
-php artisan view:cache
 
 # Create storage symlink
 echo "🔗 Creating storage symlink..."
 php artisan storage:link --force
 
-# Run migrations
-echo "🗄️  Running database migrations..."
-php artisan migrate --force --no-interaction
+# Run migrations only if database is configured
+echo "🗄️  Checking database configuration..."
+if [ -n "$DB_HOST" ] && [ -n "$DB_DATABASE" ]; then
+  echo "🗄️  Running database migrations..."
+  php artisan migrate --force --no-interaction || {
+    echo "⚠️  Migration warning - database might not be ready yet"
+  }
+else
+  echo "⚠️  Database not configured, skipping migrations"
+fi
+
+# Cache views
+echo "📄 Caching views..."
+php artisan view:cache || {
+  echo "⚠️  View cache warning - continuing anyway"
+}
 
 # Clear and optimize
 echo "🧹 Clearing cache..."

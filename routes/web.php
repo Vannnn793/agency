@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+// Static assets
+Route::get('/favicon.ico', function () {
+    return response()->file(public_path('favicon.svg'), ['Content-Type' => 'image/svg+xml']);
+})->name('favicon');
+
+Route::get('/robots.txt', function () {
+    return response()->file(public_path('robots.txt'), ['Content-Type' => 'text/plain']);
+})->name('robots');
+
 Route::controller(PublicController::class)->group(function () {
     Route::get('/', 'landing')->name('public.landing');
     Route::get('/jobs', 'jobs')->name('public.jobs');

@@ -4,17 +4,30 @@
     "api/index.php": {
       "runtime": "vercel-php@0.7.1",
       "memory": 1024,
-      "maxDuration": 30
+      "maxDuration": 30,
+      "includeFiles": "public/**"
     }
   },
   "routes": [
     {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico",
+      "status": 200
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/public/robots.txt",
+      "status": 200
+    },
+    {
       "src": "/storage/(.*)",
-      "dest": "/storage/$1"
+      "dest": "/storage/$1",
+      "status": 200
     },
     {
       "src": "/build/(.*)",
-      "dest": "/public/build/$1"
+      "dest": "/public/build/$1",
+      "status": 200
     },
     {
       "src": "/(.*)",
