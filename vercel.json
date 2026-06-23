@@ -2,21 +2,56 @@
   "version": 2,
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.1"
+      "runtime": "vercel-php@0.7.1",
+      "memory": 1024,
+      "maxDuration": 30
     }
   },
   "routes": [
-    { "src": "/build/(.*)", "dest": "/public/build/$1" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/storage/(.*)",
+      "dest": "/storage/$1"
+    },
+    {
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ],
   "outputDirectory": "public",
+  "buildCommand": "bash vercel-build.sh",
+  "framework": "laravel",
   "env": {
-    "APP_ENV": "production",
-    "APP_DEBUG": "true",
-    "LOG_CHANNEL": "stderr",
-    "VIEW_COMPILED_PATH": "/tmp",
-    "CACHE_STORE": "array",
-    "SESSION_DRIVER": "cookie"
+    "APP_ENV": {
+      "value": "production"
+    },
+    "APP_DEBUG": {
+      "value": "false"
+    },
+    "LOG_CHANNEL": {
+      "value": "stderr"
+    },
+    "LOG_LEVEL": {
+      "value": "warning"
+    },
+    "VIEW_COMPILED_PATH": {
+      "value": "/tmp"
+    },
+    "CACHE_STORE": {
+      "value": "array"
+    },
+    "SESSION_DRIVER": {
+      "value": "cookie"
+    },
+    "FILESYSTEM_DISK": {
+      "value": "public"
+    },
+    "QUEUE_CONNECTION": {
+      "value": "sync"
+    }
   }
 }
 

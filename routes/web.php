@@ -3,16 +3,20 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| PUBLIC & REDIRECT
+| PUBLIC ROUTES
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return redirect('/login');
+Route::controller(PublicController::class)->group(function () {
+    Route::get('/', 'landing')->name('public.landing');
+    Route::get('/jobs', 'jobs')->name('public.jobs');
+    Route::get('/jobs/{job}', 'jobDetail')->name('public.job-detail');
+    Route::get('/about', 'about')->name('public.about');
 });
 
 /*
